@@ -1,0 +1,24 @@
+{
+  "name": "generator-flexdd",
+  "version": "0.1",
+  "description": "Yeoman generator for the flexdd framework, build your project the way you want.",
+  "license": "MIT",
+  "main": "app/index.js",
+  "author": {
+    "name": "Adam Bulmer",
+    "email": "mintuz1990@gmail.com",
+    "url": "https://github.com/flexdd"
+  },
+  "keywords": ["yeoman-generator", "yeoman flexdd", "yeoman generator", "flexdd framework generator", "yeoman frontend framework"],
+  "dependencies": {
+    "yeoman-generator": "^0.17.3",
+    "chalk": "~0.4.0",
+    "yosay": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
