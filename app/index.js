@@ -60,6 +60,12 @@ var FlexddGenerator = yeoman.generators.Base.extend({
       },
       {
         type: 'confirm',
+        name: 'hasGrid',
+        message: 'Will you be using a grid system',
+        default: true
+      },
+      {
+        type: 'confirm',
         name: 'includeJQuery',
         message: 'Will you be using jQuery',
         default: true
@@ -113,8 +119,9 @@ var FlexddGenerator = yeoman.generators.Base.extend({
      */
     this.prompt( prompts, function ( props ) {
 
-      this.hasCompass = props.hasCompass;
       this.hasFolderStructure = props.hasFolderStructure;
+      this.hasCompass = props.hasCompass;
+      this.hasGrid = props.hasGrid;
       this.includeJQuery = props.includeJQuery;
       this.includeAngular = props.includeAngular;
       this.includeReact = props.includeReact;
@@ -133,10 +140,8 @@ var FlexddGenerator = yeoman.generators.Base.extend({
    * @return {[type]} [description]
    */
   app: function () {
-
     this._copyTemplates();
     this._setupProject();
-
   },
   /**
    * [setupProject description]
@@ -149,6 +154,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
 
     if( this.hasFolderStructure ){
 
+      // Folders
       this.mkdir( 'assets/' );
       this.mkdir( 'assets/sass/' );
       this.mkdir( 'assets/css/' );
@@ -157,6 +163,39 @@ var FlexddGenerator = yeoman.generators.Base.extend({
       this.mkdir( 'assets/sass/type/' );
       this.mkdir( 'assets/js/' );
 
+      // HTML Files
+      this.copy('_index.html', 'index.html');
+
+      // CSS Files
+      this.copy('sass/main.scss', 'assets/sass/main.scss');
+      this.copy('sass/_vendor.scss', 'assets/sass/_vendor.scss');
+      this.copy('sass/_variables.scss', 'assets/sass/_variables.scss');
+      this.copy('sass/type/_type.scss', 'assets/sass/type/_type.scss');
+      this.copy('sass/type/_icons.scss', 'assets/sass/type/_icons.scss');
+      this.copy('sass/type/_fonts.scss', 'assets/sass/type/_fonts.scss');
+
+    }
+
+    // https://github.com/Igosuki/compass-mixins
+    if( this.hasCompass ){
+      this.components.push('compass-mixins');
+    }
+
+    // Include flexdd grid setup dep on susy
+    if( this.hasGrid ){
+      //this.components.push('flexdd-grid');
+    }
+
+    if( this.hasJQuery ){
+      this.components.push('jquery');
+    }
+
+    if( this.hasAngular ){
+      this.components.push('AngularJS');
+    }
+
+    if( this.hasReact ){
+      this.components.push('react');
     }
 
   }
