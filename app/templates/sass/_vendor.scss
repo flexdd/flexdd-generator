@@ -8,20 +8,15 @@
   @import "../../bower_components/flexdd-framework/flexdd";
 
 <% if (hasCompass == true) {%>
-
   /**
    * Include a subset of Compass mixins.
    * without the requirement of ruby, allows for libsass.
    */
   @import "../../bower_components/compass-mixins/lib/compass";
-
 <% } %>
-
 <% if (hasGrid == true) {%>
-
   /**
    * Flexdd Grid system settings using Susy library.
    */
   @import "../../bower_components/flexdd-grid/ui.grid";
-
 <% } %>

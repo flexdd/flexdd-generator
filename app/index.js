@@ -25,7 +25,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
         this.bowerInstall( this.components, { save: true }, function() {
 
           // lets install the npm packages
-          this.installDependencies( { bower: false, skipInstall: false });
+          //this.installDependencies( { bower: false, skipInstall: false });
 
         }.bind( this ) );
 
@@ -46,6 +46,12 @@ var FlexddGenerator = yeoman.generators.Base.extend({
     this.log( yosay( 'Welcome to the Flexdd frontend generator!' ) );
 
     var prompts = [
+      {
+        type: 'input',
+        name: 'textProjectName',
+        message: 'What is your project name without any spaces eg. example-project',
+        default: "flexdd-generated-project"
+      },
       {
         type: 'confirm',
         name: 'hasFolderStructure',
@@ -119,6 +125,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
      */
     this.prompt( prompts, function ( props ) {
 
+      this.textProjectName = props.textProjectName;
       this.hasFolderStructure = props.hasFolderStructure;
       this.hasCompass = props.hasCompass;
       this.hasGrid = props.hasGrid;
@@ -140,7 +147,6 @@ var FlexddGenerator = yeoman.generators.Base.extend({
    * @return {[type]} [description]
    */
   app: function () {
-    this._copyTemplates();
     this._setupProject();
   },
   /**
@@ -163,8 +169,9 @@ var FlexddGenerator = yeoman.generators.Base.extend({
       this.mkdir( 'assets/sass/type/' );
       this.mkdir( 'assets/js/' );
 
-      // HTML Files
+      // Root files
       this.copy('_index.html', 'index.html');
+      this.copy('_bower.json', 'bower.json');
 
       // CSS Files
       this.copy('sass/main.scss', 'assets/sass/main.scss');

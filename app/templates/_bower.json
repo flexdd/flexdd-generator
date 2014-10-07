@@ -1,0 +1,26 @@
+{
+  "name": "<%= textProjectName %>",
+  "version": "1.0.0",
+  "authors": [
+    "Adam Bulmer <mintuz1990@gmail.com>"
+  ],
+  "description": "A project scaffolded by flexdd framework",
+  "main": "index.html",
+  "keywords": [
+    "flexdd",
+    "framework",
+    "sass",
+    "javascript",
+    "yeoman",
+    "generator"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/flexdd/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
