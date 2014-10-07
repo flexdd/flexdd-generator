@@ -13,10 +13,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="assets/css/main.css?v=1" />
 
+<%= if (includeModernizr == true) %>
+  <script src="bower_components/modernizr/modernizr.js"></script>
+<%= } %>
+
 </head>
 <body>
 
+<%= if (includeJQuery == true) %>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
+<%= } %>
+<%= if (includeReact == true) %>
+  <script src="bower_components/react/react.min.js"></script>
+<%= } %>
+<%= if (includeAngular == true) %>
+  <script src="bower_components/angular/angular.min.js"></script>
+<%= } %>
+
   <script src="assets/js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -26,7 +40,7 @@
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','<%= clientGoogleAnalytics %>');ga('send','pageview');
+      ga('create','<%= googleAnalytics %>');ga('send','pageview');
   </script>
 
 </body>

@@ -53,6 +53,12 @@ var FlexddGenerator = yeoman.generators.Base.extend({
         default: "flexdd-generated-project"
       },
       {
+        type: 'input',
+        name: 'googleAnalytics',
+        message: 'What is your Google analytics code.',
+        default: "UA-XXXXX-X"
+      },
+      {
         type: 'confirm',
         name: 'hasFolderStructure',
         message: 'Do you want a base folder structure setting up',
@@ -64,12 +70,12 @@ var FlexddGenerator = yeoman.generators.Base.extend({
         message: 'Will you be using Sass Compass',
         default: true
       },
-      {
+      /*{
         type: 'confirm',
         name: 'hasGrid',
         message: 'Will you be using a grid system',
         default: true
-      },
+      },*/
       {
         type: 'confirm',
         name: 'includeJQuery',
@@ -93,7 +99,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
         name: 'includeModernizr',
         message: 'Will you be using Modernizr',
         default: true
-      },
+      }/*,
       {
         type: 'confirm',
         name: 'hasFader',
@@ -117,7 +123,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
         name: 'hasAccordion',
         message: 'Will the project include a JQuery accordion.',
         default: false
-      }
+      }*/
     ];
 
     /**
@@ -126,6 +132,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
     this.prompt( prompts, function ( props ) {
 
       this.textProjectName = props.textProjectName;
+      this.googleAnalytics = props.googleAnalytics;
       this.hasFolderStructure = props.hasFolderStructure;
       this.hasCompass = props.hasCompass;
       this.hasGrid = props.hasGrid;
@@ -170,8 +177,8 @@ var FlexddGenerator = yeoman.generators.Base.extend({
       this.mkdir( 'assets/js/' );
 
       // Root files
-      this.copy('_index.html', 'index.html');
-      this.copy('_bower.json', 'bower.json');
+      this.copy('html/_index.html', 'index.html');
+      this.copy('configs/_bower.json', 'bower.json');
 
       // CSS Files
       this.copy('sass/main.scss', 'assets/sass/main.scss');
@@ -193,16 +200,20 @@ var FlexddGenerator = yeoman.generators.Base.extend({
       //this.components.push('flexdd-grid');
     }
 
-    if( this.hasJQuery ){
+    if( this.includeJQuery ){
       this.components.push('jquery');
     }
 
-    if( this.hasAngular ){
-      this.components.push('AngularJS');
+    if( this.includeAngular ){
+      this.components.push('angular');
     }
 
-    if( this.hasReact ){
+    if( this.includeReact ){
       this.components.push('react');
+    }
+
+    if( this.includeModernizr ){
+      this.components.push('modernizr');
     }
 
   }
