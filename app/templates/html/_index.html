@@ -13,23 +13,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="assets/css/main.css?v=1" />
 
-<%= if (includeModernizr == true) %>
+<% if (includeModernizr) { %>
+  <!-- Modernizr -->
   <script src="bower_components/modernizr/modernizr.js"></script>
-<%= } %>
+<% } %>
 
 </head>
 <body>
 
-<%= if (includeJQuery == true) %>
+<% if(includeJQuery){ %>
+<!-- jQuery -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-<%= } %>
-<%= if (includeReact == true) %>
+<% } %>
+<% if (includeReact) { %>
+  <!-- ReactJS -->
   <script src="bower_components/react/react.min.js"></script>
-<%= } %>
-<%= if (includeAngular == true) %>
+<% } %>
+<% if (includeAngular) { %>
+  <!-- Angular -->
   <script src="bower_components/angular/angular.min.js"></script>
-<%= } %>
+<% } %>
 
   <script src="assets/js/main.js"></script>
 

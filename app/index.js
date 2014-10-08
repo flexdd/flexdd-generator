@@ -138,6 +138,7 @@ var FlexddGenerator = yeoman.generators.Base.extend({
       this.hasGrid = props.hasGrid;
       this.includeJQuery = props.includeJQuery;
       this.includeAngular = props.includeAngular;
+      this.includeModernizr = props.includeModernizr;
       this.includeReact = props.includeReact;
       this.hasFader = props.hasFader;
       this.hasGallery = props.hasGallery;
